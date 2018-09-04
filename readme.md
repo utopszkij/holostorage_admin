@@ -2,11 +2,16 @@
 
 >status: pre-alpha not run correct !
 
-
-can make bridge to holostorage! see bridge_spec.json
+## requests:
+- holochain
+- holostorage
+- nodejs (only for test)
+- can make bridge to holostorage! see bridge_spec.json
 
 ## ui test - request nodejs
 
-cd ui-test
-.test.sh
+$ cd ui-test
+$ ./test.sh
+
+admin password for test: 123456
 
