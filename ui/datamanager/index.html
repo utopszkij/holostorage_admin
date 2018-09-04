@@ -1,0 +1,92 @@
+<html>
+	<!--
+	http[s]://.......#aramName/paramValue/paramName/paramValue.... url processing
+	-->
+  <head>
+	<title>hstorageDemo default</title>  
+	<!-- link rel="icon" type="image/png" href="assets/img/favicon.png" -->	
+	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+	<meta name="viewport" content="width=device-width" />
+	<!-- fonts -->
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+	<!-- jquery -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<!-- bootstrap -->	
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	<!-- main -->
+    <link rel="stylesheet" href="../style.css">
+	<script type="text/javascript" src="../main.js"></script>
+	<script type="text/javascript" src="../mainLng.js"></script>
+    <script type="text/javascript" src="./datamanager.js"></script>
+    <script type="text/javascript" src="./datamanagerLng.js"></script>
+  </head>
+  <body>
+	<div id="header" class="container"></div>  
+	<div id="content" style="display:none">
+		<div class="container" id="datamanagerContainer">
+			<div class="row">
+				<div class="col">
+					<form id="browserForm">
+						<h1><span>BROWSER_TITLE</span></h1>
+						<div class="browserParams">
+							<div class="controlGroup">
+								<label><span>RECTYPE</span>:</label>
+								<input type="text" id="recType" value="" />
+								<button type="button" class="btn btn-primary" id="btnRecType">
+									<span>OK</span>
+								</button>
+							</div>
+							<br />
+							<div class="controlGroup">
+								<label><span>FILTER_FIELD</span>:</label>
+								<input type="text" id="filterField" />
+							</div>
+							<div class="controlGroup">
+								<label><span>FILTER_VALUE</span>:</label>
+								<input type="text" id="filterStr" />
+							</div>
+							<div class="controlGroup">
+								<button type="button" class="btn btn-primary" id="btnFilter" title="DO_FILTER">
+									<i class="fa fa-search"></i>
+								</button>
+								<button type="button" class="btn btn-default" id="btnFilterErase" title="ERASE_FILTER">
+									X
+								</button>
+							</div>
+						</div>
+						<table class="table" id="browserTabe">
+							<thead class="thead-dark">
+								<tr>
+								</tr>
+							</thead>
+							<tbody>
+							</tbody>
+						</table>
+						
+						<p id="noresult" style="display:none"><span>NO_RECORD</span></p>
+						<p class="pTotal"><span>TOTAL</span>:<var id="total">0</var></p>
+
+						<ul class="pagination" id="pagination">
+						</ul> 						
+						<p>
+							<a href="#" id="btnAdd" title="ADD" class="btn btn-default"><i class="fa fa-plus"></i></a>&nbsp;
+						</p>
+					</form>	
+					<form id="dataForm" style="display:none">
+						<center>
+						<h1><span>DATAFORM_TITLE</span></h1>
+						<p></p><textarea id="record" cols="80" rows="10"></textarea></p>
+						<p>
+							<button type="button" id="btnDataOK" class="btn btn-primary"><span>OK</span></button>&nbsp;
+							<button type="button" id="btnDataCANCEL" class="btn btn-default"><span>CANCEL</span></button>&nbsp;
+						</p>	
+						</center>
+					</form>	  
+				</div>
+			</div>
+		</div>	
+    </div>
+	<div id="footer" class="container"></div>  
+  </body>
+</html>

@@ -1,0 +1,86 @@
+	<div class="row">
+		<center>
+		<h1><i class="fa fa-cloud"></i>&nbsp;<span>HOLOSTORAGE_ADMIN</span></h1>
+		</center>
+
+		<nav class="navbar navbar-default">
+		  <div class="container-fluid">
+			<div class="navbar-header">
+			  <button type="button" class="navbar-toggle collapsed" 
+				data-toggle="collapse"
+				data-target="#bs-example-navbar-collapse-1" 
+				aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			  </button>
+			  <a href="#">&nbsp;</a>
+			</div>
+
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			  <ul class="nav navbar-nav">
+				<li id="callerMenuItem">
+					<a href="../caller/"><span>FUNCTION_CALL</span> <span class="sr-only">(current)</span></a>
+				</li>
+				<li id="dataManagerMenuItem">
+					<a href="../datamanager/"><span>DATA_MANAGER</span></a>
+				</li>
+				<li id="configMenuItem">
+					<a href="../setup/"><span>CONFIG_SETUP</span></a>
+				</li>
+				<li id="logoutMenuItem" style="display:none">
+					<a href="../caller/"><span>LOGOUT</span></a>
+				</li>
+			  </ul>
+			</div><!-- /.navbar-collapse -->
+		  </div><!--/.  container-fluid -->
+		</nav>
+	</div>
+	
+	<!-- Modal -->
+	<button type="button" class="btn btn-primary" data-toggle="modal" 
+		data-target="#popupModal" id="btnModalToggle" style="display:none">
+	   Launch demo modal
+	</button>
+	<div class="modal fade" id="popupModal" tabindex="-1" role="dialog" 
+		aria-labelledby="popupModalLabel" aria-hidden="true">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body"></div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default btnClose" data-dismiss="modal">
+	        	<span>CLOSE</span>
+	        </button>
+	        <button type="button" class="btn btn-primary btnYes">
+	        	<span>YES</span>
+	        </button>
+	        <button type="button" class="btn btn-default btnNo" data-dismiss="modal">
+	        	<span>NO</span>
+	        </button>
+	      </div>
+	    </div>
+	  </div>
+	</div>  
+
+	<!-- login form -->
+	<div class="row" id="loginForm" style="display:none">
+		<center>
+			<h2><span>LOGIN</span></h2>
+			<form name="loginForm">
+				<p>
+					<span>ADMIN_PSW</span>:
+					<input type="password" id="psw" value="" name="psw" />
+					<button type="button" id="btnLogin" class="btn btn-primary">
+						<span>OK</span>
+					</button>
+				</p>
+			</form>
+		</center>
+	</div>
+		

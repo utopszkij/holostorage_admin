@@ -1,0 +1,64 @@
+{
+    "Version": 1,
+    "UUID": "518f1f2e-7d3e-11e8-acb7-0242ac110002",
+    "Name": "hstoragedemo",
+    "Properties": {
+        "description": "provides an application template",
+        "language": "en"
+    },
+    "PropertiesSchemaFile": "properties_schema.json",
+    "RequiresVersion": 23,
+    "DHTConfig": {
+        "HashType": "sha2-256"
+    },
+    "Zomes": [
+        {
+            "Name": "caller",
+            "Description": "holostorage admin function caller",
+            "CodeFile": "caller.js",
+            "RibosomeType": "js",
+            "Entries": [
+            
+            ],
+            "Functions": [
+                {
+                    "Name": "model",
+                    "CallingType": "string",
+                    "Exposure": "public"
+                }
+            ]
+        },
+        {
+            "Name": "datamanager",
+            "Description": "holostorage admin data manager",
+            "CodeFile": "datamanager.js",
+            "RibosomeType": "js",
+            "Entries": [
+            
+            ],
+            "Functions": [
+                {
+                    "Name": "model",
+                    "CallingType": "string",
+                    "Exposure": "public"
+                }
+            ]
+        },
+        {
+            "Name": "setup",
+            "Description": "holostorage admin data manager",
+            "CodeFile": "setup.js",
+            "RibosomeType": "js",
+            "Entries": [
+            
+            ],
+            "Functions": [
+                {
+                    "Name": "model",
+                    "CallingType": "string",
+                    "Exposure": "public"
+                }
+            ]
+        }
+    ]
+}

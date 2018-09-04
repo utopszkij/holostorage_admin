@@ -1,0 +1,42 @@
+
+require('./testFramework.js');
+require('../ui/main.js');
+require('../ui/setup/setup.js');
+require('../ui/setup/setupLng.js');
+
+// model result for setup.js modelIni
+$.modelTest.push({"status":"OK", "config":{"enabled":[], "psw":"123456"}});
+$.userKey = '123456';
+$.modulIni();
+
+var test = new Test();
+test.start('setup test').
+testItem('config correct').
+	modelResult({"status":"OK"}).
+	formSet('#fName','set').
+	formSet('#oldpsw','123456').
+	formSet('#newpsw','1234567').
+	formSet('#newpsw2','1234567').
+	formSet('#enabled','aaaaaaa\nbbbbbb\nccccccc').
+	run($("#btnConfig").clickFun).
+	assertEqual('#popupModal .modal-body','OK').
+testItem('config psw <> psw2').
+	modelResult({"status":"OK"}).
+	formSet('#fName','set').
+	formSet('#oldpsw','1234567').
+	formSet('#newpsw','12345678').
+	formSet('#newpsw2','12345679').
+	formSet('#enabled','aaaaaaa\nbbbbbb\nccccccc').
+	run($("#btnConfig").clickFun).
+	assertEqual('#popupModal .modal-body','Passwords not equa').
+testItem('config psw incorrect').
+	modelResult({"status":"ACCESS_VIOLATION"}).
+	formSet('#fName','set').
+	formSet('#oldpsw','1234567890').
+	formSet('#newpsw','1234567').
+	formSet('#newpsw2','1234567').
+	formSet('#enabled','aaaaaaa\nbbbbbb\nccccccc').
+	run($("#btnConfig").clickFun).
+	assertEqual('#popupModal .modal-body','Wrong password').
+stop();
+

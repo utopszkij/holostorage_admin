@@ -1,0 +1,25 @@
+{
+    "Tests": [
+        {
+            "Convey": "addRecord_0",
+            "Zome": "demoZome",
+            "FnName": "addRecord",
+            "Exposure": "public",
+            "Input": {"recType":"rec2","id":0,"title":"test record"},
+            "Output": {"status":"OK", "newId":1}
+        },
+        {
+            "Convey": "addRecord_1",
+            "Zome": "demoZome",
+            "FnName": "addRecord",
+            "Exposure": "public",
+            "Input": {"recType":"rec2","id":0,"title":"test record"},
+            "Output": {"status":"OK", "newId":2}
+        }
+    ],
+    "Identity": "",
+    "Fixtures": {
+        "Agents": null
+    },
+    "Benchmark": false
+}

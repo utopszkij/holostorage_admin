@@ -1,0 +1,38 @@
+<html>
+	<!--
+	root the url specified or default modul
+	http[s]://...index.html/#modulName/paramName/paramValue/paramName/paramValue.... url processing
+	-->
+	<head>
+		<title>Holostorage demo rooter</title>  
+		<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+		<meta name="viewport" content="width=device-width" />
+	</head>
+	<body>
+		<script type="text/javascript">
+			var DEFMODUL = 'caller';
+			var href = window.location.href;
+			var i = href.indexOf('#');
+			if (i > 0) {
+				var segments = href.split('#');
+				var segments2 = segments[1].split('/');
+				var modul = segments2[0];
+				var url = './'+modul+'/';
+				if (segments2.length > 1) {
+					for (i = 1; i < segments2.length; i = i + 2) {
+						if (i == 1) {
+							url += '#';
+						} else {
+							url += '/';
+						}	
+						url += segments2[i]+'/'+segments2[i+1];
+					}
+				}
+				<!-- goto ./modul.html#pName/pValue/pname/pvalue url -->
+				document.location = url;  
+			} else {
+				document.location = './'+DEFMODUL+'/'  
+			}; 
+		</script>
+	</body>
+</html>

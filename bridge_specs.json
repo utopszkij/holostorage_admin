@@ -1,0 +1,14 @@
+[
+  {"Path":"../holostorage",
+   "Side":1,
+   "BridgeZome":"caller"
+  },
+  {"Path":"../holostorage",
+   "Side":1,
+   "BridgeZome":"datamanager"
+  },
+  {"Path":"../holostorage",
+   "Side":1,
+   "BridgeZome":"setup"
+  }
+]

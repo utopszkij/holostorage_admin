@@ -1,0 +1,4 @@
+$.Lng.MODUL1 = 'Modul1';
+$.Lng.SETUP_TITLE = "Configuration";
+$.Lng.OLD_PASSWORD = "Old password";
+$.Lng.WRONG_PASSWORD = "Wrong password";

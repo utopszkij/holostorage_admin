@@ -1,0 +1,18 @@
+html {font-size:14px; line-height:150%}
+#header h1 {background-color:#D0D0D0; padding:5px}
+#content {min-height:70%}
+#loginForm {height:70%}
+#footer {background-color:silver;} 
+#defaultContainer {}
+ul.pagination li i {line-height: inherit}
+thead.thead-dark {background-color:#8e8484; color:white;}
+.browserParams label {display:inline-block; width:150px; text-align:right; padding:2px}
+.datamanagerContainer label {display:inline-block; width:150px; text-align:right; padding:2px}
+.callerContainer label {display:inline-block; width:150px; text-align:right; padding:2px}
+.setupContainer label {display:inline-block; width:150px; text-align:right; padding:2px}
+.colIcons {width:100px}
+.colIcons a {margin:2px; padding:2px}
+.controlGroup {display:inline-block; width:auto; height:auto}
+#modal {background-color:black; opacity:0.2; 
+	position:fixed; z-index:1050; left:0px; top:0px; right:0px; bottom:0px;}
+#modal .modalContent {background-color:white; opacity:0.9; margin:50px; z-index:1051}	
