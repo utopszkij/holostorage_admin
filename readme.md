@@ -1,43 +1,43 @@
 # admin layout for HOLOSTORAGE universal data storage layer
 
->status: pre-alpha not run correct!
+>status: pre-alpha ** not run correct! **
 
 ## Features
 - graphic UI for holostorage functions
 - universal datamanager (browser, add, edit, delete, search)
 - holostorage config manager
 
-## Requests:
+## Requests
 - holochain
 - holostorage
 - nodejs (only for test)
 - can make bridge to holostorage for valid runing! see bridge_spec.json
 
-## install
+## Install
 
-$ cd holochain_app_root
+$ cd <holochain_app_root>
 
 $ git clone https://github.com/utopszkij/holostorage_admin
 
 ## DNA test
 
-$ ..../holostorage_admin/dna-test
+$ <holochain_app_root>/holostorage_admin/dna-test
 
 $ hcdev test
 
-## ui test - request nodejs
+## UI test - request nodejs
 
-$ cd ...../holostorage_admin/ui-test
+$ cd <holochain_app_root>/holostorage_admin/ui-test
 
 $ ./test.sh
 
-## interactive test
+## Interactive test
 
-cd ..../holostorage_admin
+cd <holochain_app_root>/holostorage_admin
 
 $ hcdev web 3142
 
-In browser: http://yourdomain:3142
+In web browser: http://<yourdomain>:3142
 
 admin password for test: 123456
 

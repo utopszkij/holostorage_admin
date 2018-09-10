@@ -39,9 +39,12 @@
 							</div>
 							<br />
 							(only one DNA hash in one line)
+							<br />
+							<br />
+							<h3>if you want to modify the password:</h3>
 							<div class="controlGroup">
 								<label><span>NEW_PASSWORD</span>:</label>
-								<input type="password" id="newpsw" />(only if change)
+								<input type="password" id="newpsw" />
 							</div>
 							<br />
 							<div class="controlGroup">

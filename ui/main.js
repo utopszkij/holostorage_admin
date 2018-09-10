@@ -22,7 +22,6 @@ $.model = function(modul, fName, userKey, param, successFun) {
 		  			// sometimes json parse is not good
 		  			if (typeof p !== "object") {
 						if (p.includes('"status":')) {		  			
-							console.log(JSON.parse(p));
 				  			successFun(JSON.parse(p));
 				  		} else {
 				  			successFun({"status":p});

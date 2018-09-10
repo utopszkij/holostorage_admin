@@ -55,23 +55,24 @@
 								</button>
 							</div>
 						</div>
-						<table class="table" id="browserTabe">
-							<thead class="thead-dark">
-								<tr>
-								</tr>
-							</thead>
-							<tbody>
-							</tbody>
-						</table>
-						
-						<p id="noresult" style="display:none"><span>NO_RECORD</span></p>
-						<p class="pTotal"><span>TOTAL</span>:<var id="total">0</var></p>
-
-						<ul class="pagination" id="pagination">
-						</ul> 						
-						<p>
-							<a href="#" id="btnAdd" title="ADD" class="btn btn-default"><i class="fa fa-plus"></i></a>&nbsp;
-						</p>
+						<div id="browser1">						
+							<table class="table" id="browserTabe">
+								<thead class="thead-dark">
+									<tr id="th"></tr>
+								</thead>
+								<tbody>
+								</tbody>
+							</table>
+							<p class="noresult" style="display:none"><span>NO_RECORD</span></p>
+							<div class="dPagination">							
+								<p id="pTotal"><span>TOTAL</span>:<var id="total">0</var></p>
+								<p>Pages:</p>
+								<ul id="pagination" class="pagination"></ul> 		
+							</div>				
+							<div class="dAdd">
+								<a href="#" id="btnAdd" title="ADD" class="btn btn-default"><i class="fa fa-plus"></i></a>&nbsp;
+							</div>
+						</div>
 					</form>	
 					<form id="dataForm" style="display:none">
 						<center>

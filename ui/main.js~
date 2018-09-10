@@ -10,11 +10,18 @@
 $.modelTest = []; // array of test modelResultObj
 $.modelTestI = 0;
 $.model = function(modul, fName, userKey, param, successFun) {
+
+console.log(' $.model1 '+modul+' '+fName);
+
+
 	if ($.modelTestI < $.modelTest.length) {
 		$.modelTestI++;
 		successFun($.modelTest[$.modelTestI - 1]);
 	} else {
 		var modelParam = {"fName": fName, "userKey":userKey, "param": param};
+
+console.log(' $.model2 '+JSON.stringify(modelParam));		  		
+
 	   $.post('/fn/'+modul+'/model',
 		  		JSON.stringify(modelParam),
 		  		function(modelResultStr) {

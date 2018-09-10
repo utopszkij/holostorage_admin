@@ -1,12 +1,14 @@
+
 /**
 * echo table head tr into $('thead tr')
 * @param object {total: number, records:[[id,recType], ...}
 * @param array of string fieldNames
 * @inputGlobals $.orderField, $.orderDir
-* @outputGlobals $.select, $.tr, $tri
+* @outputGlobals $.selectFields, $.tr, $tri
 * @return void,
 */
 function echoTableHeader(result) {
+		$.selectFields = [];
 		if (result.records.length > 0) {
 			var id0 = result.records[0][0];
 			var recType = result.records[result.records.length - 1][1];
@@ -17,9 +19,8 @@ function echoTableHeader(result) {
 				var oderIcon = '';
 				$.tr='<th class="colIcons"></th>';
 				$.tri = 1;
-				$.select = [];
 				$.each(result0.record, function(fieldName, fieldValue) {
-					$.select.push(fieldName);
+					$.selectFields.push(fieldName);
 					if ($.tri <= 5) {
 						if (fieldName == $.orderField) {
 							thClass = 'th ordered';
@@ -32,13 +33,36 @@ function echoTableHeader(result) {
 							thClass = 'th';
 							orderIcon = '';
 						}
-						$.tr += '<th class="'+thClass+'" id="o'+fieldName+'">'+orderIcon+fieldName+'</th>';
+						$.tr += '<th class="'+thClass+'" style="cursor:pointer" id="o'+fieldName+'">'+orderIcon+' '+fieldName+'</th>';
 					}
 					$.tri++;
 				});
-			});
-			$('thead tr').html($.tr);			
-		}
+				$('#th').html($.tr);		
+				// define trigger for th click	
+			   $("th.th").click(function(event) {
+					// this.attr('i') is 'o'+fieldname
+					if ($(this).attr('id') != undefined) {
+						var o = $(this).attr('id').substring(1,10);
+					} else {
+						var o = 'id';		
+					}	
+					if (o != $.orderField) {
+						$.orderField = o;
+						$.orderDir = 'ASC';
+						$.tableOffset = 0;
+					} else {
+						if ($.orderDir == 'ASC') {
+							$.orderDir = 'DESC';
+						} else {
+							$.orderDir = 'ASC';
+						}
+						$.tableOffset = 0;
+					}
+					loadBrowserTable(); 
+				}); // click
+				loadBrowserTable();
+			}); // model result
+		} // result.length > 0
 }
 
 /**
@@ -60,17 +84,49 @@ function echoTableBody(result) {
 					var record = result0.record;
 					$.tr = '<tr><td class="colIcons">';
 					$.tr += '<a href="#" class="btnEdit btn" title="EDIT" id="'+record.id+'"><i class="fa fa-edit"></i>&nbsp;';
-					$.tr += '<a href="#"class="btnDelete btn" title="DELETE" id="'+record.id+'"><i class="fa fa-eraser"></i>&nbsp;';
+					$.tr += '<a href="#" class="btnDelete btn" title="DELETE" id="'+record.id+'"><i class="fa fa-eraser"></i>&nbsp;';
 					$.tr += '</td>';
 					$.tri = 1;
-					for (i=0; (i<$.select.length) && (i <= 5); i++) {
-							$.tr += '<td>'+result0.record[$.select[i]]+'</td>';
+					for (i=0; (i<$.selectFields.length) && (i <= 5); i++) {
+							$.tr += '<td>'+result0.record[$.selectFields[i]]+'</td>';
 					}
 					$.tr += '</tr>';
 					$('tbody').html($('tbody').html()+$.tr);			
+					// define triggers for record edit/delete buttons
+				   $(".btnEdit").click(function(event){
+						// this.attr('id') is record.id
+						var recType = $('#recType').val();
+						var id = $(this).attr('id');		
+						// read record into textarea.#record
+						var param = {"recType":recType, "id":id};
+						$.model('datamanager','getRecord', $.userKey, param, function(result) {
+									if (result.status == 'OK') {
+										$('#record').val(JSON.stringify(result.record));
+									} else {
+										$.Popup.msg(result.status);
+									}
+						});
+						$('#browserForm').hide();
+						$('#dataForm').show();
+					});
+				   $(".btnDelete").click(function(event){
+						// this.attr('id') is record.id
+						var recType = $('#recType').val();
+						var id = $(this).attr('id');		
+						// delete record
+						var param = {"recType":recType, "id":id};
+						$.model('datamanager','deleteRecord', $.userKey, param, function(result) {
+								$.Popup.msg(result.status);
+						});
+						$.tableOffset = 0;
+						loadBrowserTable();
+						$('#browserForm').show();
+						$('#dataForm').hide();
+					});
 				});	
-			}
-		}
+			} // for
+			echoPagination(result);
+		} // result.length > 0
 }
 
 /**
@@ -129,7 +185,6 @@ function loadBrowserTable() {
 		return;	
 	}
 	
-	
 	var filterStr = $('#filterStr').val();
 	var filterField = $('#filterField').val();
 	var where = "id > 0";
@@ -155,15 +210,11 @@ function loadBrowserTable() {
 					$('#noresult').show();				
 				} else {
 					$('#noresult').hide();				
+					// echo header + body + pagination
+					echoTableHeader(result);
+					// echo total
+					$('#total').html(result.total);
 				}
-				// echo header
-				echoTableHeader(result);
-				// echo total
-				$('#total').html(result.total);
-				// echo table
-				echoTableBody(result); 
-				// echo pagination
-				echoPagination(result);
 	});
 } // loadBrowserTable
 
@@ -185,38 +236,6 @@ $(document).ready(function() {
 		loadBrowserTable();
 	});
 	
-    $(".btnEdit").click(function(event){
-		// this.attr('id') is record.id
-		var recType = $('#recType').val();
-		var id = $(this).attr('id');		
-		// read record into textarea.#record
-		var param = {"recType":recType, "id":id};
-		$.model('datamanager','getRecord', $.userKey, param, function(result) {
-					if (result.status == 'OK') {
-						$('#record').val(JSON.stringify(result.record));
-					} else {
-						$.Popup.msg(result.status);
-					}
-		});
-		$('#browserForm').hide();
-		$('#dataForm').show();
-	});
-	
-    $(".btnDelete").click(function(event){
-		// this.attr('id') is record.id
-		var recType = $('#recType').val();
-		var id = $(this).attr('id');		
-		// delete record
-		var param = {"recType":recType, "id":id};
-		$.model('datamanager','deleteRecord', $.userKey, param, function(result) {
-				$.Popup.msg(result.status);
-		});
-		$.tableOffset = 0;
-		loadBrowserTable();
-		$('#browserForm').show();
-		$('#dataForm').hide();
-	});
-	
     $("#btnAdd").click(function(event){
 		var recType = $('#recType').val();
 		$('#record').val('{"recType":"'+recType+'", "id":0}');
@@ -236,37 +255,16 @@ $(document).ready(function() {
 		loadBrowserTable();
 	});
 
-   $("th.th").click(function(event){
-		// this.attr('i') is 'o'+fieldname
-		if ($(this).attr('id') != undefined) {
-			var o = Number($(this).attr('id').substring(1,10));
-		} else {
-			var o = 0;		
-		}	
-		if (o == $.orderField) {
-			$.orderField = o;
-			$.orderDir = 'ASC';
-			$.tableOffset = 0;
-		} else {
-			if ($.orderDir == 'ASC') {
-				$.orderDir = 'DESC';
-			} else {
-				$.orderDir = 'ASC';
-			}
-			$.tableOffset = 0;
-		}
-		loadBrowserTable();
-	});
-	
-
    $("#btnDataOK").click(function(event){
 		// save record from textarea.#record
 		var record = JSON.parse($('#record').val());
+		var recType = record.recType;
 		if (record.id == 0) {
-			var Fname = 'addRecord';
+			var fName = 'addRecord';
 		} else {
 			var fName = 'updateRecord';
 		}
+		record.recType = recType;
 		$.model('datamanager',fName, $.userKey, record, function(result) {
 					if (result.status == 'OK') {
 						loadBrowserTable(recType, $.tableOffset, 20);
@@ -309,6 +307,9 @@ $.modulIni = function() {
 	$.tableOffset = 0;
 	$.orderField = 'id';
 	$.orderDir = 'ASC';
+	$.tr = '';
+	$.tri = 0;
+	$.selectFields = [];
 }
 
 
