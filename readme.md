@@ -2,6 +2,8 @@
 
 >status: pre-alpha ** not run correct! **
 
+I think this concept is wrong. Holochain DHT validation in this construct can not be achieved. :( :( :(
+
 ## Features
 - graphic UI for holostorage functions
 - universal datamanager (browser, add, edit, delete, search)
